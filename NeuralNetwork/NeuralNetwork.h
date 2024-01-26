@@ -115,6 +115,7 @@ private:
 	int InitNeuron();
 	// method to place neuron if column != row
 	int ColumnRowNE(int, int, int, int, Neuron**, int);
+	int ConnectNeuron(Neuron*, Neuron*);
 
 };
 #pragma once

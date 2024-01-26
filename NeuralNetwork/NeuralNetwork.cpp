@@ -507,7 +507,77 @@ int NeuralNetwork::CreateConnection(int layer)
     return 0;
 }
 
+int NeuralNetwork::ConnectNeuron(Neuron* first, Neuron* secend)
+{
+    int static connection = 0;
+    size_t o_free = 0;
+    size_t i_free = 0;
 
+    // Check if weight is not NULL
+    if (n_weight[connection] == NULL)
+    {
+        return -1;
+    }
+
+        // Find if any of output is free
+    if (first->output_0 != NULL) o_free = 1;
+    else if (first->output_0 != NULL) o_free = 2;
+    else if (first->output_0 != NULL) o_free = 3;
+    else if (first->output_0 != NULL) o_free = 4;
+    else if (first->output_0 != NULL) o_free = 5;
+    
+    //Next check if any of input is free
+    if (secend->input_0 != NULL) i_free = 1;
+    else if (secend->input_0 != NULL) i_free = 2;
+    else if (secend->input_0 != NULL) i_free = 3;
+    
+    // Cennect neuron with weight if any input and output are free and weight connects back to neuron
+    if (o_free != 0 && i_free != 0)
+    {
+        switch (o_free)
+        {
+        case 1:
+            first->output_0 = n_weight[connection];
+            n_weight[connection]->input = first;
+            break;
+        case 2:
+            first->output_1 = n_weight[connection];
+            n_weight[connection]->input = first;
+            break;
+        case 3:
+            first->output_2 = n_weight[connection];
+            n_weight[connection]->input = first;
+            break;
+        case 4:
+            first->output_3 = n_weight[connection];
+            n_weight[connection]->input = first;
+            break;
+        case 5:
+            first->output_0 = n_weight[connection]; 
+            n_weight[connection]->input = first;
+            break;
+        }
+
+        // Connect secend neuron 
+        switch(i_free)
+        {
+        case 1:
+            secend->input_0 = n_weight[connection];
+            n_weight[connection]->output = secend;
+            break;
+        case 2:
+            secend->input_1 = n_weight[connection];
+            n_weight[connection]->output = secend;
+            break;
+        case 3:
+            secend->input_2 = n_weight[connection];
+            n_weight[connection]->output = secend;
+            break;
+        }
+    }
+
+    return 0;
+}
 
 void NeuralNetwork::ShowNeuron(int start, int end)
 {
