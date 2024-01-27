@@ -575,7 +575,7 @@ int NeuralNetwork::ConnectNeuron(Neuron* first, Neuron* secend)
             break;
         }
     }
-
+    connection++;
     return 0;
 }
 
